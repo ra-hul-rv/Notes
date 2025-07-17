@@ -9,8 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: appRouter.config(),
-      title: 'Auto Route Demo',
+      title: 'Note',
       theme: ThemeData(primarySwatch: Colors.blue),
     );
   }

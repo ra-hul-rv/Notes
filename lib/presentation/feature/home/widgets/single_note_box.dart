@@ -1,45 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:notes/domain/model/note.dart';
+
 
 class SingleNoteBox extends StatelessWidget {
-  const SingleNoteBox({super.key});
+  final Note note;
+  const SingleNoteBox({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(20),
-      width: double.infinity,
-      height: 100,
-      padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
-      decoration: BoxDecoration(
-        color: Colors.white70,
-        borderRadius: BorderRadiusDirectional.circular(10),
-      ),
-      child: Column(
-        spacing: 10,
+    final formattedDate = note.date;
 
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-            children: [
-              Text(
-                'Title potion',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                '24/12/2025',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-            children: [Text('The main content of the note ')],
-          ),
-        ],
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(child: Text(note.title, style: const TextStyle(fontWeight: FontWeight.bold))),
+                Text(
+                  formattedDate,
+                  style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              note.content,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }
