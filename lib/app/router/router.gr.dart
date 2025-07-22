@@ -11,6 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
+import 'package:notes/domain/model/note.dart' as _i5;
 import 'package:notes/presentation/feature/home/home.dart' as _i1;
 import 'package:notes/presentation/feature/notes/notes.dart' as _i2;
 
@@ -33,10 +34,10 @@ class HomeRoute extends _i3.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.NotePage]
 class NoteRoute extends _i3.PageRouteInfo<NoteRouteArgs> {
-  NoteRoute({_i4.Key? key, List<_i3.PageRouteInfo>? children})
+  NoteRoute({_i4.Key? key, _i5.Note? note, List<_i3.PageRouteInfo>? children})
     : super(
         NoteRoute.name,
-        args: NoteRouteArgs(key: key),
+        args: NoteRouteArgs(key: key, note: note),
         initialChildren: children,
       );
 
@@ -48,18 +49,20 @@ class NoteRoute extends _i3.PageRouteInfo<NoteRouteArgs> {
       final args = data.argsAs<NoteRouteArgs>(
         orElse: () => const NoteRouteArgs(),
       );
-      return _i2.NotePage(key: args.key);
+      return _i2.NotePage(key: args.key, note: args.note);
     },
   );
 }
 
 class NoteRouteArgs {
-  const NoteRouteArgs({this.key});
+  const NoteRouteArgs({this.key, this.note});
 
   final _i4.Key? key;
 
+  final _i5.Note? note;
+
   @override
   String toString() {
-    return 'NoteRouteArgs{key: $key}';
+    return 'NoteRouteArgs{key: $key, note: $note}';
   }
 }
